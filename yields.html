@@ -56,7 +56,7 @@ a:hover { text-decoration: underline; }
 /* COVER */
 .cover {
   background: var(--forest);
-  padding: 48px 48px 42px;
+  padding: 48px 0 42px;
   position: relative;
   overflow: hidden;
 }
@@ -360,7 +360,7 @@ a:hover { text-decoration: underline; }
 /* INTERSTITIAL */
 .interstitial {
   background: var(--forest);
-  padding: 26px 48px;
+  padding: 26px 0;
   position: relative;
 }
 .iq-text {
@@ -383,7 +383,7 @@ a:hover { text-decoration: underline; }
 /* FOOTER */
 .footer {
   background: var(--forest);
-  padding: 24px 48px 36px;
+  padding: 24px 0 36px;
 }
 .footer-rule { border-top: 1.5px solid var(--gold-dim); margin-bottom: 20px; }
 .footer-grid { display: table; width: 100%; margin-bottom: 16px; }
@@ -429,6 +429,49 @@ a:hover { text-decoration: underline; }
   padding-top: 13px;
   border-top: 1px solid rgba(196,154,60,0.20);
 }
+/* ── MOBILE LAYOUT FIXES (screens narrower than 600px) ──────────────────
+   Table-based layouts (used for footer and intro) don't collapse gracefully
+   on narrow screens — they squeeze columns until text wraps vertically.
+   These rules switch those sections to stacked block layout on mobile.     */
+@media (max-width: 600px) {
+  .footer-grid {
+    display: block; /* stack footer columns vertically instead of side by side */
+  }
+  .fl-left, .fl-right {
+    display: block;
+    width: 100%;
+    text-align: left; /* override the right-align on the QR column */
+  }
+  .fqr img {
+    margin-left: 0;
+    margin-top: 16px; /* add breathing room above the QR when stacked */
+  }
+  .intro {
+    display: block; /* same fix for the intro section table layout */
+  }
+  .intro-left, .intro-right {
+    display: block;
+    width: 100%;
+    padding-right: 0;
+    text-align: left;
+    margin-top: 8px;
+  }
+}
+
+/* ── MOBILE INTERSTITIAL FIX ─────────────────────────────────────────────
+   The quote block has right padding to make room for the decorative sprig
+   SVG beside it. On mobile that padding eats most of the available width,
+   so we remove it and hide the sprig entirely.                             */
+@media (max-width: 600px) {
+  .iq-text {
+    padding-right: 0;
+    max-width: 100%;
+  }
+  .im {
+    display: none; /* hide the decorative sprig on mobile */
+  }
+}
+
 </style>
 </head>
 <body>
