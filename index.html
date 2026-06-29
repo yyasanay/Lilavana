@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lilavana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;1,400;1,500&family=Alegreya+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream: #FFFEE8;
+      --ink: #1A1A14;
+      --crimson: #E11D48;
+      --olive: #506B22;
+      --ink-light: #4a4a40;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Alegreya', Georgia, serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .page {
+      opacity: 0;
+      animation: appear 1.4s ease forwards;
+      animation-delay: 0.2s;
+      text-align: center;
+      max-width: 640px;
+      width: 100%;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .wordmark {
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .wordmark em {
+      font-style: italic;
+      color: var(--olive);
+    }
+
+    .tagline {
+      font-family: 'Alegreya Sans', sans-serif;
+      font-weight: 300;
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      color: var(--ink-light);
+      letter-spacing: 0.02em;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .rule {
+      width: 2rem;
+      height: 1px;
+      background: var(--crimson);
+      margin: 0 auto 2.5rem;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      align-items: center;
+    }
+
+    .links a {
+      font-family: 'Alegreya Sans', sans-serif;
+      font-weight: 400;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ink);
+      transition: color 0.2s ease;
+    }
+
+    .links a:hover {
+      color: var(--crimson);
+    }
+
+    .links a.primary {
+      color: var(--crimson);
+      font-weight: 400;
+    }
+
+    .links a.primary:hover {
+      color: var(--ink);
+    }
+
+    .footnote {
+      position: fixed;
+      bottom: 2rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: 'Alegreya Sans', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      color: var(--olive);
+      opacity: 0.7;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page { animation: none; opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="page">
+    <h1 class="wordmark">Lila<em>vana</em></h1>
+    <p class="tagline">food, connection, and the work of becoming</p>
+    <div class="rule"></div>
+    <nav class="links">
+      <a href="/factsheet" class="primary">What We Make →</a>
+      <a href="https://yyasanay.substack.com" target="_blank" rel="noopener">Substack</a>
+    </nav>
+  </main>
+
+  <p class="footnote">Baltimore, MD &nbsp;·&nbsp; Yasith Y.</p>
+
+</body>
+</html>
