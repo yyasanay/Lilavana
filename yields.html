@@ -40,17 +40,13 @@ a { color: var(--gold); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 .page {
+  max-width: 780px;
+  margin: 0 auto;
   font-family: 'Lora', Georgia, serif;
   font-size: 10pt;
   line-height: 1.65;
   color: var(--ink);
   background: var(--bg);
-}
-
-.page-inner {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0 48px;
 }
 
 /* COVER */
@@ -429,48 +425,6 @@ a:hover { text-decoration: underline; }
   padding-top: 13px;
   border-top: 1px solid rgba(196,154,60,0.20);
 }
-/* ── MOBILE LAYOUT FIXES (screens narrower than 600px) ──────────────────
-   Table-based layouts (used for footer and intro) don't collapse gracefully
-   on narrow screens — they squeeze columns until text wraps vertically.
-   These rules switch those sections to stacked block layout on mobile.     */
-@media (max-width: 600px) {
-  .footer-grid {
-    display: block; /* stack footer columns vertically instead of side by side */
-  }
-  .fl-left, .fl-right {
-    display: block;
-    width: 100%;
-    text-align: left; /* override the right-align on the QR column */
-  }
-  .fqr img {
-    margin-left: 0;
-    margin-top: 16px; /* add breathing room above the QR when stacked */
-  }
-  .intro {
-    display: block; /* same fix for the intro section table layout */
-  }
-  .intro-left, .intro-right {
-    display: block;
-    width: 100%;
-    padding-right: 0;
-    text-align: left;
-    margin-top: 8px;
-  }
-}
-
-/* ── MOBILE INTERSTITIAL FIX ─────────────────────────────────────────────
-   The quote block has right padding to make room for the decorative sprig
-   SVG beside it. On mobile that padding eats most of the available width,
-   so we remove it and hide the sprig entirely.                             */
-@media (max-width: 600px) {
-  .iq-text {
-    padding-right: 0;
-    max-width: 100%;
-  }
-  .im {
-    display: none; /* hide the decorative sprig on mobile */
-  }
-}
 
 </style>
 </head>
@@ -479,7 +433,6 @@ a:hover { text-decoration: underline; }
 
 <!-- COVER -->
 <div class="cover">
-  <div class="page-inner">
    <div class="cover-ring" style="width:320px;height:320px;top:-130px;right:-80px;"></div>
    <div class="cover-ring" style="width:180px;height:180px;top:-50px;right:30px;"></div>
    <div class="cover-ring" style="width:80px;height:80px;top:20px;right:120px;"></div>
@@ -487,7 +440,6 @@ a:hover { text-decoration: underline; }
    <h1 class="cover-title">What<br>We<br><em>Make</em></h1>
    <div class="cover-rule"></div>
    <p class="cover-sub">Small batches, whole ingredients. <br> Co-designed to nourish us, <br> and to evolve alongside us.</p>
- </div>
  </div>
 <div class="cover-edge"></div>
 
@@ -612,7 +564,6 @@ a:hover { text-decoration: underline; }
 
 <!-- INTERSTITIAL -->
 <div class="interstitial">
-  <div class="page-inner">
    <p class="iq-text">"Our kitchen is a lab — where big questions around food get to breathe, and shape our becoming."</p>
    <div class="im">
      <svg width="24" height="58" viewBox="0 0 24 58" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -622,7 +573,6 @@ a:hover { text-decoration: underline; }
        <ellipse cx="10" cy="43" rx="3.5" ry="4.5" stroke="#4A5E40" stroke-width="0.8" fill="none" transform="rotate(-15 10 43)" opacity="0.4"/>
      </svg>
    </div>
-  </div>
 </div>
 
 <!-- YIELD 03: WILD MANGO SODA -->
@@ -671,7 +621,6 @@ a:hover { text-decoration: underline; }
 
 <!-- FOOTER -->
 <div class="footer">
-  <div class="page-inner">
    <div class="footer-rule"></div>
    <div class="footer-grid">
      <div class="fl-left">
@@ -690,7 +639,6 @@ a:hover { text-decoration: underline; }
        </div>
      </div>
      </div>
-  </div>
   <p class="fclose">This is a living project. Things change as we learn new things. <a href="https://yyasanay.substack.com/subscribe">Subscribe to the newsletter</a> to stay updated!</p>
 </div>
 
