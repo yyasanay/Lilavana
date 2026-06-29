@@ -40,13 +40,17 @@ a { color: var(--gold); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 .page {
-  max-width: 680px;
-  margin: 0 auto;
   font-family: 'Lora', Georgia, serif;
   font-size: 10pt;
   line-height: 1.65;
   color: var(--ink);
   background: var(--bg);
+}
+
+.page-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 48px;
 }
 
 /* COVER */
@@ -432,15 +436,18 @@ a:hover { text-decoration: underline; }
 
 <!-- COVER -->
 <div class="cover">
-  <div class="cover-ring" style="width:320px;height:320px;top:-130px;right:-80px;"></div>
-  <div class="cover-ring" style="width:180px;height:180px;top:-50px;right:30px;"></div>
-  <div class="cover-ring" style="width:80px;height:80px;top:20px;right:120px;"></div>
-  <span class="cover-eyebrow">The Kitchen Share &nbsp;·&nbsp; Baltimore, MD</span>
-  <h1 class="cover-title">What<br>We<br><em>Make</em></h1>
-  <div class="cover-rule"></div>
-  <p class="cover-sub">Small batches, whole ingredients. <br> Co-designed to nourish us, <br> and to evolve alongside us.</p>
-</div>
+  <div class="page-inner">
+   <div class="cover-ring" style="width:320px;height:320px;top:-130px;right:-80px;"></div>
+   <div class="cover-ring" style="width:180px;height:180px;top:-50px;right:30px;"></div>
+   <div class="cover-ring" style="width:80px;height:80px;top:20px;right:120px;"></div>
+   <span class="cover-eyebrow">The Kitchen Share &nbsp;·&nbsp; Baltimore, MD</span>
+   <h1 class="cover-title">What<br>We<br><em>Make</em></h1>
+   <div class="cover-rule"></div>
+   <p class="cover-sub">Small batches, whole ingredients. <br> Co-designed to nourish us, <br> and to evolve alongside us.</p>
+ </div>
+ </div>
 <div class="cover-edge"></div>
+
 
 <!-- INTRO -->
 <div class="intro">
@@ -562,14 +569,16 @@ a:hover { text-decoration: underline; }
 
 <!-- INTERSTITIAL -->
 <div class="interstitial">
-  <p class="iq-text">"Our kitchen is a lab — where big questions around food get to breathe, and shape our becoming."</p>
-  <div class="im">
-    <svg width="24" height="58" viewBox="0 0 24 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 3 Q16 11 12 19 Q8 27 12 35 Q16 43 12 51 Q10 55 12 58" stroke="#C49A3C" stroke-width="1" fill="none" opacity="0.55"/>
-      <ellipse cx="9" cy="15" rx="4" ry="5" stroke="#4A5E40" stroke-width="0.8" fill="none" transform="rotate(-20 9 15)" opacity="0.5"/>
-      <ellipse cx="15" cy="29" rx="4" ry="5" stroke="#4A5E40" stroke-width="0.8" fill="none" transform="rotate(18 15 29)" opacity="0.5"/>
-      <ellipse cx="10" cy="43" rx="3.5" ry="4.5" stroke="#4A5E40" stroke-width="0.8" fill="none" transform="rotate(-15 10 43)" opacity="0.4"/>
-    </svg>
+  <div class="page-inner">
+   <p class="iq-text">"Our kitchen is a lab — where big questions around food get to breathe, and shape our becoming."</p>
+   <div class="im">
+     <svg width="24" height="58" viewBox="0 0 24 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+       <path d="M12 3 Q16 11 12 19 Q8 27 12 35 Q16 43 12 51 Q10 55 12 58" stroke="#C49A3C" stroke-width="1" fill="none" opacity="0.55"/>
+       <ellipse cx="9" cy="15" rx="4" ry="5" stroke="#4A5E40" stroke-width="0.8" fill="none" transform="rotate(-20 9 15)" opacity="0.5"/>
+       <ellipse cx="15" cy="29" rx="4" ry="5" stroke="#4A5E40" stroke-width="0.8" fill="none" transform="rotate(18 15 29)" opacity="0.5"/>
+       <ellipse cx="10" cy="43" rx="3.5" ry="4.5" stroke="#4A5E40" stroke-width="0.8" fill="none" transform="rotate(-15 10 43)" opacity="0.4"/>
+     </svg>
+   </div>
   </div>
 </div>
 
@@ -619,23 +628,25 @@ a:hover { text-decoration: underline; }
 
 <!-- FOOTER -->
 <div class="footer">
-  <div class="footer-rule"></div>
-  <div class="footer-grid">
-    <div class="fl-left">
-      <div class="fn">Yasith Y. &nbsp;·&nbsp; The Kitchen Share</div>
-      <div class="fd">
+  <div class="page-inner">
+   <div class="footer-rule"></div>
+   <div class="footer-grid">
+     <div class="fl-left">
+       <div class="fn">Yasith Y. &nbsp;·&nbsp; The Kitchen Share</div>
+       <div class="fd">
         Baltimore, MD<br>
         We share what comes out of the kitchen with people in our community. If something here interests you, reach out — always happy to talk about what's available.<br>
         <!-- replace with your Instagram and contact -->
         <a href="http://instagram.com/yasithy/">Instagram</a> &nbsp;·&nbsp; <a href="mailto:yyasanay@substack.com">Email</a>
-      </div>
-    </div>
-    <div class="fl-right">
-      <div class="fqr">
-        <img src="assets/images/qr-code.png" alt="Subscribe QR">
-        <div class="fql">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Website</div>
-      </div>
-    </div>
+       </div>
+     </div>
+     <div class="fl-right">
+       <div class="fqr">
+         <img src="assets/images/qr-code.png" alt="Subscribe QR">
+         <div class="fql">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Website</div>
+       </div>
+     </div>
+     </div>
   </div>
   <p class="fclose">This is a living project. Things change as we learn new things. <a href="https://yyasanay.substack.com/subscribe">Subscribe to the newsletter</a> to stay updated!</p>
 </div>
