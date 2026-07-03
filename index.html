@@ -126,6 +126,170 @@
       opacity: 0.7;
     }
 
+    .sky-trigger {
+      margin-top: 2.5rem;
+      background: none;
+      border: none;
+      font-family: 'Alegreya Sans', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.2s ease;
+    }
+
+    .sky-trigger:hover {
+      opacity: 1;
+    }
+
+    /* ── Sky overlay ── */
+    .sky {
+      position: fixed;
+      inset: 0;
+      background: #080c14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.9s ease;
+      z-index: 100;
+    }
+
+    .sky.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .sky-close {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: none;
+      border: none;
+      font-family: 'Alegreya Sans', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .sky-close:hover { color: rgba(255,255,255,0.9); }
+
+    /* ── Constellation SVG ── */
+    .constellation {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+    }
+
+    .con-line {
+      stroke: rgba(255,255,255,0.15);
+      stroke-width: 1;
+      stroke-dasharray: 4 6;
+    }
+
+    /* Unlocked stars */
+    .star-node.unlocked .star-core {
+      fill: white;
+    }
+
+    .star-node.unlocked .star-glow {
+      fill: white;
+      opacity: 0.15;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    .star-node.unlocked:hover .star-core { fill: #f0e6c8; }
+    .star-node.unlocked:hover .star-glow { opacity: 0.35; }
+
+    /* Locked stars */
+    .star-node.locked .star-core {
+      fill: rgba(255,255,255,0.2);
+    }
+
+    .star-node.locked .star-glow {
+      fill: rgba(255,255,255,0.05);
+    }
+
+    .star-node.locked {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    /* Labels */
+    .star-label {
+      fill: rgba(255,255,255,0.5);
+      font-family: 'Alegreya Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-anchor: middle;
+    }
+
+    .star-node.unlocked .star-label {
+      fill: rgba(255,255,255,0.7);
+    }
+
+    /* Pulse animation */
+    @keyframes pulse {
+      0%, 100% { r: 5; opacity: 0.15; }
+      50%       { r: 9; opacity: 0.08; }
+    }
+
+    /* ── Tooltip ── */
+    .sky-tooltip {
+      position: absolute;
+      bottom: 5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      padding: 1.2rem 1.5rem;
+      max-width: 340px;
+      width: calc(100% - 4rem);
+      text-align: center;
+      transition: opacity 0.4s ease;
+    }
+
+    .sky-tooltip p {
+      font-family: 'Alegreya', serif;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .sky-tooltip button {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.5);
+      font-family: 'Alegreya Sans', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+
+    .sky-tooltip button:hover {
+      border-color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.9);
+    }
+
+    .sky-tooltip.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .page { animation: none; opacity: 1; }
     }
@@ -141,9 +305,116 @@
       <a href="/yields" class="primary">Kitchen Share Yields →</a>
       <a href="https://yyasanay.substack.com" target="_blank" rel="noopener">Substack</a>
     </nav>
+    <button class="sky-trigger" id="skyTrigger" aria-label="Constellations">↑ constellations</button>
   </main>
 
   <p class="footnote">Baltimore, MD &nbsp;·&nbsp; Yasith Y.</p>
+
+  <!-- Sky overlay -->
+  <div class="sky" id="sky" aria-hidden="true">
+    <button class="sky-close" id="skyClose" aria-label="Return">↓ return</button>
+
+    <svg class="constellation" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- Constellation lines — drawn first so stars sit on top -->
+      <line x1="200" y1="420" x2="340" y2="280" class="con-line" />
+      <line x1="340" y1="280" x2="520" y2="320" class="con-line" />
+      <line x1="520" y1="320" x2="680" y2="180" class="con-line" />
+
+      <!-- UNLOCKED stars — clickable -->
+      <a href="https://YOUR-QUARTZ-URL/page-one" target="_blank">
+        <g class="star-node unlocked">
+          <circle cx="200" cy="420" r="5" class="star-glow" />
+          <circle cx="200" cy="420" r="3" class="star-core" />
+          <text x="200" y="445" class="star-label">impulse</text>
+        </g>
+      </a>
+
+      <a href="https://YOUR-QUARTZ-URL/page-two" target="_blank">
+        <g class="star-node unlocked">
+          <circle cx="340" cy="280" r="5" class="star-glow" />
+          <circle cx="340" cy="280" r="3" class="star-core" />
+          <text x="340" y="302" class="star-label">attention</text>
+        </g>
+      </a>
+
+      <a href="https://YOUR-QUARTZ-URL/page-three" target="_blank">
+        <g class="star-node unlocked">
+          <circle cx="520" cy="320" r="5" class="star-glow" />
+          <circle cx="520" cy="320" r="3" class="star-core" />
+          <text x="520" y="342" class="star-label">lila</text>
+        </g>
+      </a>
+
+      <!-- LOCKED stars — not yet accessible -->
+      <g class="star-node locked">
+        <circle cx="680" cy="180" r="5" class="star-glow" />
+        <circle cx="680" cy="180" r="3" class="star-core" />
+        <text x="680" y="202" class="star-label">· · ·</text>
+      </g>
+
+      <g class="star-node locked">
+        <circle cx="820" cy="300" r="5" class="star-glow" />
+        <circle cx="820" cy="300" r="3" class="star-core" />
+        <text x="820" y="322" class="star-label">· · ·</text>
+      </g>
+
+      <!-- Scattered background stars -->
+      <circle cx="100" cy="80"  r="1.5" fill="white" opacity="0.3" />
+      <circle cx="450" cy="60"  r="1"   fill="white" opacity="0.2" />
+      <circle cx="700" cy="90"  r="1.5" fill="white" opacity="0.25"/>
+      <circle cx="870" cy="440" r="1"   fill="white" opacity="0.2" />
+      <circle cx="150" cy="300" r="1"   fill="white" opacity="0.15"/>
+      <circle cx="600" cy="480" r="1.5" fill="white" opacity="0.2" />
+      <circle cx="300" cy="520" r="1"   fill="white" opacity="0.15"/>
+      <circle cx="750" cy="520" r="1"   fill="white" opacity="0.2" />
+
+    </svg>
+
+    <!-- First-visit tooltip -->
+    <div class="sky-tooltip" id="skyTooltip">
+      <p>These are the constellations of lilavana — ideas distilled into navigable form. Some are reachable now. Others reveal themselves in time.</p>
+      <button id="tooltipDismiss">got it</button>
+    </div>
+  </div>
+
+    <!-- JavaScript for Sky -->
+<script>
+    const skyTrigger = document.getElementById('skyTrigger');
+    const skyClose   = document.getElementById('skyClose');
+    const sky        = document.getElementById('sky');
+    const tooltip    = document.getElementById('skyTooltip');
+    const dismiss    = document.getElementById('tooltipDismiss');
+
+    // Show sky
+    skyTrigger.addEventListener('click', () => {
+      sky.classList.add('visible');
+
+      // Only show tooltip on first visit
+      const seen = localStorage.getItem('sky-tooltip-seen');
+      if (!seen) {
+        tooltip.classList.remove('hidden');
+      } else {
+        tooltip.classList.add('hidden');
+      }
+    });
+
+    // Hide sky
+    skyClose.addEventListener('click', () => {
+      sky.classList.remove('visible');
+    });
+
+    // Dismiss tooltip and remember it
+    dismiss.addEventListener('click', () => {
+      tooltip.classList.add('hidden');
+      localStorage.setItem('sky-tooltip-seen', 'true');
+    });
+
+    // Also close with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') sky.classList.remove('visible');
+    });
+  </script>
 
 </body>
 </html>
