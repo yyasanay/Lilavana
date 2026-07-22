@@ -33,7 +33,7 @@ GitHub Pages serves `index.html` automatically for any folder path, which is why
   upload buttons, styling). Never edit this file directly — always work from a copy.
 - **Ingredient Database workbook** — your master per-100g nutrition reference.
   Only needed if this week includes an ingredient that isn't in it yet.
-- The local folder path to your `lilavana.org` git repo.
+- The local folder path to your `lilavana.org` git repo. (currently C:\Users\yasit\LilavanaWebsite\Lilavana\nutrition)
 
 ---
 
