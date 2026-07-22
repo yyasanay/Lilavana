@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>This Week's Nutrition — Kitchen Share</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --gold: #c8a96e;
+    --brown: #3a2e1e;
+    --mid: #5a4a32;
+    --light: #d4c4a8;
+    --bg-card: #faf7f2;
+    --highlight: #2c5f2e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--cream);
+    font-family: 'Lora', Georgia, serif;
+    padding: 48px 28px 64px;
+    max-width: 680px;
+    margin: 0 auto;
+    color: var(--brown);
+  }
+  header {
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--light);
+    padding-bottom: 26px;
+  }
+  .header-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--brown);
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 13px;
+    color: var(--mid);
+    font-style: italic;
+  }
+  .dish {
+    background: var(--bg-card);
+    border: 1px solid var(--light);
+    margin-bottom: 26px;
+    overflow: hidden;
+    break-inside: avoid;
+  }
+  .dish-header {
+    padding: 18px 24px 14px;
+    border-bottom: 1px solid var(--light);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .dish-number {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .dish-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--brown);
+    line-height: 1.3;
+  }
+  .dish-body {
+    padding: 20px 24px 22px;
+  }
+  .calories-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .calories-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--highlight);
+  }
+  .calories-label {
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+  .macros {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+    padding: 14px 0;
+    border-top: 1px solid var(--light);
+    border-bottom: 1px solid var(--light);
+  }
+  .macro {
+    text-align: center;
+  }
+  .macro-value {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--brown);
+  }
+  .macro-label {
+    display: block;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-top: 2px;
+  }
+  .micros-title {
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .micros {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 20px;
+    margin-bottom: 18px;
+  }
+  .micro-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 3px 0;
+    border-bottom: 1px dotted var(--light);
+  }
+  .micro-name {
+    color: var(--mid);
+  }
+  .micro-value {
+    color: var(--brown);
+    font-weight: 600;
+  }
+  .ingredients-note {
+    font-size: 12.5px;
+    color: var(--mid);
+    font-style: italic;
+    line-height: 1.55;
+    padding-top: 14px;
+    border-top: 1px solid var(--light);
+  }
+  a {
+    color: var(--highlight);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+  }
+  a:hover {
+    color: var(--gold);
+  }
+  footer {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid var(--light);
+    font-size: 11.5px;
+    color: var(--mid);
+    line-height: 1.7;
+  }
+  footer .foot-label {
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+    display: block;
+  }
+  .photo-slot {
+    position: relative;
+    width: 100%;
+    min-height: 170px;
+    background: var(--light);
+    overflow: hidden;
+  }
+  .photo-slot img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .photo-slot input[type="file"] {
+    display: none;
+  }
+  .photo-upload-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    color: var(--mid);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--light);
+    transition: background 0.15s ease;
+  }
+  .photo-upload-label:hover {
+    background: var(--gold);
+    color: var(--bg-card);
+  }
+  .photo-upload-label .plus {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    line-height: 1;
+  }
+  .photo-slot.has-photo .photo-upload-label {
+    position: absolute;
+    inset: auto 8px 8px auto;
+    width: auto;
+    height: auto;
+    padding: 5px 10px;
+    background: rgba(58,46,30,0.72);
+    color: #fff;
+    font-size: 10px;
+    flex-direction: row;
+    gap: 4px;
+  }
+  .photo-slot.has-photo .photo-upload-label .plus {
+    font-size: 14px;
+  }
+  .photo-slot.has-photo .photo-upload-label:hover {
+    background: var(--brown);
+  }
+  .download-bar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--brown);
+    color: var(--cream);
+    padding: 10px 16px;
+    text-align: center;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+  }
+  .download-bar button {
+    background: var(--gold);
+    color: var(--brown);
+    border: none;
+    padding: 7px 16px;
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-size: 12.5px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .download-bar button:hover {
+    background: #b89257;
+  }
+  @media print {
+    .download-bar { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="download-bar">
+  Add your photos below, then <button onclick="downloadWithPhotos()">Download page with photos</button>
+</div>
+
+<header>
+  <div class="header-label"><a href="https://thekitchenshare.substack.com" target="_blank" rel="noopener">Kitchen Share</a> &middot; <a href="https://lilavana.org" target="_blank" rel="noopener">Lilavana</a></div>
+  <h1>This Week's Nutrition</h1>
+  <div class="subtitle">Per serving estimates for this week's menu &middot; use this to plan around your own protein, fiber, and micronutrient needs</div>
+</header>
+
+<!--
+  ============================================================
+  HOW THIS TEMPLATE WORKS
+  ============================================================
+  One <div class="dish">...</div> block below = one dish.
+  Duplicate the block for each dish in the week (usually 3–5).
+  Delete the block entirely for weeks with fewer dishes.
+  Fill in every {{PLACEHOLDER}} — nothing else needs to change.
+
+  - {{DISH_NUMBER}}      roman numeral: i. / ii. / iii. / iv. / v.
+  - {{PHOTO_SLOT_ID}}    matching integer: 1 / 2 / 3 / 4 / 5
+    (must match across photo-slot id, label "for", and input id)
+  - {{CALORIE_UNIT}}     e.g. "per jar" / "per serving" / "per burrito" / "per muffin"
+  - Micronutrient order is fixed on every card, always:
+    Iron, Calcium, Magnesium, Potassium, Zinc, Vitamin A, Vitamin C, Folate
+  - Ingredients note: plain ingredient names, no gram amounts.
+  ============================================================
+-->
+
+<!-- DISH {{DISH_NUMBER}} -->
+<div class="dish">
+  <div class="dish-header">
+    <span class="dish-number">{{DISH_NUMBER}}.</span>
+    <span class="dish-name">{{DISH_NAME}}</span>
+  </div>
+  <div class="photo-slot" id="photo-slot-{{PHOTO_SLOT_ID}}">
+    <label class="photo-upload-label" for="photo-input-{{PHOTO_SLOT_ID}}"><span class="plus">+</span><span class="label-text">Add photo</span></label>
+    <input type="file" id="photo-input-{{PHOTO_SLOT_ID}}" accept="image/*" onchange="handlePhotoUpload(this, {{PHOTO_SLOT_ID}})">
+  </div>
+  <div class="dish-body">
+    <div class="calories-row">
+      <span class="calories-number">~{{CALORIES}}</span>
+      <span class="calories-label">kcal {{CALORIE_UNIT}}</span>
+    </div>
+    <div class="macros">
+      <div class="macro"><span class="macro-value">{{PROTEIN}}g</span><span class="macro-label">Protein</span></div>
+      <div class="macro"><span class="macro-value">{{CARBS}}g</span><span class="macro-label">Carbs</span></div>
+      <div class="macro"><span class="macro-value">{{FAT}}g</span><span class="macro-label">Fat</span></div>
+      <div class="macro"><span class="macro-value">{{FIBER}}g</span><span class="macro-label">Fiber</span></div>
+    </div>
+    <div class="micros-title">Micronutrients {{CALORIE_UNIT}}</div>
+    <div class="micros">
+      <div class="micro-row"><span class="micro-name">Iron</span><span class="micro-value">{{IRON}} mg</span></div>
+      <div class="micro-row"><span class="micro-name">Calcium</span><span class="micro-value">{{CALCIUM}} mg</span></div>
+      <div class="micro-row"><span class="micro-name">Magnesium</span><span class="micro-value">{{MAGNESIUM}} mg</span></div>
+      <div class="micro-row"><span class="micro-name">Potassium</span><span class="micro-value">{{POTASSIUM}} mg</span></div>
+      <div class="micro-row"><span class="micro-name">Zinc</span><span class="micro-value">{{ZINC}} mg</span></div>
+      <div class="micro-row"><span class="micro-name">Vitamin A</span><span class="micro-value">{{VITAMIN_A}} mcg</span></div>
+      <div class="micro-row"><span class="micro-name">Vitamin C</span><span class="micro-value">{{VITAMIN_C}} mg</span></div>
+      <div class="micro-row"><span class="micro-name">Folate</span><span class="micro-value">{{FOLATE}} mcg</span></div>
+    </div>
+    <div class="ingredients-note">
+      {{INGREDIENTS_NOTE}}
+    </div>
+  </div>
+</div>
+
+<!-- Duplicate the block above for each additional dish, incrementing
+     {{DISH_NUMBER}} (ii., iii., iv. ...) and {{PHOTO_SLOT_ID}} (2, 3, 4 ...) -->
+
+
+<footer>
+  <span class="foot-label">A note on the numbers</span>
+  Figures are per-serving estimates built from standard ingredient databases and recipe measurements.
+</footer>
+
+<script>
+function handlePhotoUpload(input, n) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const slot = document.getElementById('photo-slot-' + n);
+    let img = slot.querySelector('img');
+    if (!img) {
+      img = document.createElement('img');
+      slot.insertBefore(img, slot.firstChild);
+    }
+    img.src = e.target.result;
+    slot.classList.add('has-photo');
+    slot.querySelector('.label-text').textContent = 'Change photo';
+  };
+  reader.readAsDataURL(file);
+}
+
+function downloadWithPhotos() {
+  const clone = document.documentElement.cloneNode(true);
+  const bar = clone.querySelector('.download-bar');
+  if (bar) bar.remove();
+  // Strip all upload controls so the client copy is view-only
+  clone.querySelectorAll('.photo-upload-label').forEach(el => el.remove());
+  clone.querySelectorAll('.photo-slot input[type="file"]').forEach(el => el.remove());
+  clone.querySelectorAll('.photo-slot').forEach(el => {
+    if (!el.querySelector('img')) {
+      el.remove(); // no photo added — drop the empty slot rather than ship a blank box
+    } else {
+      el.classList.remove('has-photo');
+    }
+  });
+  const script = clone.querySelector('script');
+  if (script) script.remove();
+  const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'kitchen_share_nutrition_week.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
