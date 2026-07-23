@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Kitchen Share — Yasith Y.</title>
+<meta name="description" content="How the kitchen share started, what happens there, and what's come out of it — before any of it had a price.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --bg:       #FFFFEE;
+  --forest:   #1A1F17;
+  --ink:      #1C1C1A;
+  --gold:     #C49A3C;
+  --gold-dim: #8C6D28;
+  --sage:     #4A5E40;
+  --mid:      #6B6459;
+  --line:     #DDD5C0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); }
+a { color: var(--gold); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.page {
+  max-width: 780px;
+  margin: 0 auto;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 10pt;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+/* COVER */
+.cover {
+  background: var(--forest);
+  padding: 48px 48px 42px;
+  position: relative;
+  overflow: hidden;
+}
+.cover-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(196,154,60,0.10);
+  pointer-events: none;
+}
+.cover-eyebrow {
+  font-family: 'Lora', serif;
+  font-size: 7pt;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 26px;
+  display: block;
+}
+.cover-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 48pt;
+  font-weight: 700;
+  line-height: 0.92;
+  color: var(--bg);
+  margin-bottom: 26px;
+  letter-spacing: -0.02em;
+}
+.cover-title em { font-style: italic; color: var(--gold); }
+.cover-rule { width: 28px; height: 1.5px; background: var(--gold); margin-bottom: 16px; }
+.cover-sub {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 10.5pt;
+  color: rgba(255,255,238,0.68);
+  max-width: 360px;
+  line-height: 1.6;
+}
+.cover-edge {
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 18%, var(--gold-dim) 82%, transparent 100%);
+}
+
+/* INTRO */
+.intro {
+  padding: 24px 48px 22px;
+  border-bottom: 1px solid var(--line);
+  display: table;
+  width: 100%;
+}
+.intro-left {
+  display: table-cell;
+  vertical-align: middle;
+  width: 65%;
+  padding-right: 24px;
+}
+.intro-note {
+  font-size: 9pt;
+  font-style: italic;
+  color: var(--mid);
+  border-left: 1.5px solid var(--gold);
+  padding-left: 12px;
+  line-height: 1.65;
+}
+.intro-right {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: right;
+}
+.intro-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 7pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mid);
+  line-height: 2.2;
+}
+.intro-mark a { color: var(--gold); font-style: normal; }
+
+/* SECTIONS (same visual language as .product on /products) */
+.section {
+  padding: 30px 48px 28px;
+  position: relative;
+  background: var(--bg);
+}
+.section + .section { border-top: 1px solid var(--line); }
+.section-ghost {
+  position: absolute;
+  right: 40px; top: 14px;
+  font-family: 'Playfair Display', serif;
+  font-size: 72pt;
+  font-weight: 700;
+  color: rgba(180,165,140,0.10);
+  line-height: 1;
+  pointer-events: none;
+  letter-spacing: -0.04em;
+}
+.sec-label {
+  font-size: 6pt;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--sage);
+  font-family: 'Lora', serif;
+  margin-bottom: 5px;
+  display: block;
+}
+.sec-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22pt;
+  font-weight: 700;
+  line-height: 1.0;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.sec-rule { width: 20px; height: 1.5px; background: var(--gold); margin: 7px 0 8px; }
+.sec-tag {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 10pt;
+  color: var(--mid);
+  margin-bottom: 13px;
+  line-height: 1.4;
+}
+.sec-body {
+  font-size: 9.5pt;
+  color: var(--ink);
+  line-height: 1.7;
+  max-width: 500px;
+  margin-bottom: 14px;
+}
+
+/* KEY/VALUE LIST — same as .prod-list on /products */
+.klist {
+  margin: 0 0 14px 0;
+  font-size: 9.5pt;
+  line-height: 2.0;
+}
+.klist-item { margin: 0 0 1px 0; color: var(--ink); }
+.klist-item .key {
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+}
+
+/* NOTE — same as .batch-note on /products */
+.note {
+  font-size: 8.5pt;
+  font-style: italic;
+  color: var(--mid);
+  border-left: 1.5px solid var(--line);
+  padding-left: 11px;
+  line-height: 1.6;
+  margin-bottom: 14px;
+  max-width: 440px;
+}
+
+/* FACTS */
+.facts {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 9px 0;
+  display: table;
+  width: 100%;
+  margin-bottom: 4px;
+}
+.fc {
+  display: table-cell;
+  vertical-align: top;
+  padding: 3px 12px;
+  border-right: 1px solid var(--line);
+}
+.fc:first-child { padding-left: 0; }
+.fc:last-child  { border-right: none; padding-right: 0; }
+.fl {
+  font-size: 5.5pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid);
+  display: block;
+  margin-bottom: 3px;
+  font-family: 'Lora', serif;
+}
+.fv {
+  font-family: 'Playfair Display', serif;
+  font-size: 8.5pt;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+/* INTERSTITIAL — same as on /products */
+.interstitial {
+  background: var(--forest);
+  padding: 26px 48px;
+  position: relative;
+}
+.iq-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 14pt;
+  color: var(--bg);
+  line-height: 1.5;
+  max-width: 460px;
+  opacity: 0.88;
+  padding-right: 60px;
+}
+.im {
+  position: absolute;
+  right: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* CROSSLINK — a forest strip pointing to /products, styled like .portal */
+.crosslink {
+  background: var(--forest);
+  padding: 20px 48px;
+  display: table;
+  width: 100%;
+}
+.cl-text { display: table-cell; vertical-align: middle; }
+.cl-eyebrow {
+  font-size: 6pt;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 4px;
+}
+.cl-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 12pt;
+  font-weight: 700;
+  color: var(--bg);
+}
+.cl-arrow {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: right;
+  width: 90px;
+}
+.cl-arrow a {
+  font-family: 'Playfair Display', serif;
+  font-size: 9pt;
+  font-weight: 700;
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  padding: 8px 14px;
+  border-radius: 2px;
+  display: inline-block;
+  white-space: nowrap;
+}
+.cl-arrow a:hover { text-decoration: none; background: rgba(196,154,60,0.1); }
+
+/* JOIN — two-path CTA before the footer */
+.join {
+  padding: 30px 48px 28px;
+  border-top: 1px solid var(--line);
+}
+.join-head {
+  font-family: 'Playfair Display', serif;
+  font-size: 18pt;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.join-sub {
+  font-size: 9pt;
+  font-style: italic;
+  color: var(--mid);
+  margin-bottom: 18px;
+}
+.join-grid { display: table; width: 100%; table-layout: fixed; border-spacing: 0; }
+.join-card {
+  display: table-cell;
+  vertical-align: top;
+  width: 50%;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+}
+.join-card + .join-card { border-left: none; }
+.jc-label {
+  font-size: 5.5pt;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sage);
+  display: block;
+  margin-bottom: 7px;
+}
+.jc-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 12pt;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.jc-body {
+  font-size: 8.5pt;
+  color: var(--mid);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.jc-btn {
+  font-family: 'Lora', serif;
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  border: 1px solid var(--gold-dim);
+  padding: 8px 12px;
+  border-radius: 2px;
+  display: inline-block;
+}
+.jc-btn:hover { text-decoration: none; background: rgba(196,154,60,0.08); }
+
+/* FOOTER — identical to /products */
+.footer {
+  background: var(--forest);
+  padding: 24px 48px 36px;
+}
+.footer-rule { border-top: 1.5px solid var(--gold-dim); margin-bottom: 20px; }
+.footer-grid { display: table; width: 100%; margin-bottom: 16px; }
+.fl-left  { display: table-cell; vertical-align: top; }
+.fl-right {
+  display: table-cell;
+  vertical-align: top;
+  text-align: right;
+  width: 80px;
+}
+.fn {
+  font-family: 'Playfair Display', serif;
+  font-size: 10.5pt;
+  font-weight: 700;
+  color: var(--bg);
+  margin-bottom: 7px;
+}
+.fd {
+  font-size: 8pt;
+  color: rgba(255,255,238,0.52);
+  line-height: 1.95;
+}
+.fd a { color: var(--gold); }
+.fqr img {
+  width: 60px; height: 60px;
+  display: block;
+  margin-left: auto;
+  margin-bottom: 4px;
+}
+.fql {
+  font-size: 5.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  text-align: center;
+}
+.fclose {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 8pt;
+  color: rgba(255,255,238,0.36);
+  line-height: 1.55;
+  padding-top: 13px;
+  border-top: 1px solid rgba(196,154,60,0.20);
+}
+
+/* RESPONSIVE — the source pages are print-styled and fixed-width;
+   this keeps the same visual language readable on small screens. */
+@media (max-width: 640px) {
+  .page { font-size: 11px; }
+  .cover, .intro, .section, .interstitial, .crosslink, .join, .footer { padding-left: 22px; padding-right: 22px; }
+  .cover-title { font-size: 34pt; }
+  .sec-name { font-size: 18pt; }
+  .section-ghost { font-size: 48pt; right: 20px; }
+  .intro { display: block; }
+  .intro-left { display: block; width: auto; padding-right: 0; margin-bottom: 14px; }
+  .intro-right { display: block; text-align: left; }
+  .facts, .fc { display: block; }
+  .fc { border-right: none; border-bottom: 1px solid var(--line); padding: 6px 0; }
+  .fc:last-child { border-bottom: none; }
+  .crosslink, .footer-grid { display: block; }
+  .cl-arrow, .fl-right { display: block; text-align: left; margin-top: 12px; }
+  .join-grid { display: block; }
+  .join-card { display: block; width: auto; }
+  .join-card + .join-card { border-left: 1px solid var(--line); border-top: none; margin-top: -1px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- COVER -->
+<div class="cover">
+   <div class="cover-ring" style="width:320px;height:320px;top:-130px;right:-80px;"></div>
+   <div class="cover-ring" style="width:180px;height:180px;top:-50px;right:30px;"></div>
+   <div class="cover-ring" style="width:80px;height:80px;top:20px;right:120px;"></div>
+   <span class="cover-eyebrow"><a href = "lilavana.com">Lilavana</a> &nbsp;·&nbsp; The Kitchen Share</span>
+   <h1 class="cover-title">How It<br><em>Started</em></h1>
+   <div class="cover-rule"></div>
+   <p class="cover-sub">A test kitchen for questions food can actually answer — long before any of it had a price.</p>
+ </div>
+<div class="cover-edge"></div>
+
+<!-- INTRO -->
+<div class="intro">
+  <div class="intro-left">
+    <p class="intro-note">This started as my own research, not a business plan. It still mostly is. If you want in — cooking, tasting, or just hearing what's next — reach out via <a href="http://instagram.com/yasithy/">Instagram</a> or <a href="mailto:yyasanay@substack.com">Email</a>.</p>
+  </div>
+  <div class="intro-right">
+    <div class="intro-mark">
+      01. How it started<br>
+      02. What happens here<br>
+      03. What it's yielded
+    </div>
+    <div class="intro-mark" style="margin-top:10px;">
+      <a href="products.html">What we make &nbsp;→</a>
+    </div>
+  </div>
+</div>
+
+<!-- 01: HOW IT STARTED -->
+<div class="section">
+  <div class="section-ghost">01</div>
+  <span class="sec-label">Origin &nbsp;·&nbsp; Ongoing</span>
+  <div class="sec-name">The Test Kitchen</div>
+  <div class="sec-rule"></div>
+  <div class="sec-tag">...two questions I kept cooking toward, long before I called it a kitchen share.</div>
+
+  <p class="sec-body">It started with ferments and seitan, for different reasons. Ferments because they're a study in transformation and death — what a body owes the microbes it's made of, worked through alongside Lisa Heldke's writing on food and philosophy. Seitan because plant-based protein is a real, unglamorous problem worth solving well, and because "meat, but not meat" is its own strange question about taste and ethics.</p>
+
+  <p class="sec-body">Cooking that seriously produces a lot of food — more than one person can eat. Around the same time, a friend, Ava, needed good, novel, reasonably priced food, and I needed income to keep doing this work at all. That exchange is where the kitchen share actually started. It's since grown to six people, and it's still growing.</p>
+
+  <div class="klist">
+    <div class="klist-item">— <span class="key">Ferments</span> — transformation, death, and what we owe the microbes we're made of</div>
+    <div class="klist-item">— <span class="key">Seitan</span> — protein, ethics, and what "meat" even means</div>
+    <div class="klist-item">— <span class="key">The exchange</span> — too much food, met by people who wanted it</div>
+    <div class="klist-item">— <span class="key">Now</span> — six people, cooking and tasting together, and counting</div>
+  </div>
+
+  <p class="note">None of this started as a pitch. It still isn't one.</p>
+
+  <div class="facts">
+    <div class="fc"><span class="fl">Started as</span><span class="fv">A personal research kitchen</span></div>
+    <div class="fc"><span class="fl">Questions</span><span class="fv">Transformation · Protein · Ethics</span></div>
+    <div class="fc"><span class="fl">Now</span><span class="fv">6 people, and growing</span></div>
+  </div>
+</div>
+
+<!-- 02: WHAT HAPPENS HERE -->
+<div class="section">
+  <div class="section-ghost">02</div>
+  <span class="sec-label">Gathering &nbsp;·&nbsp; Ongoing</span>
+  <div class="sec-name">What Happens Here</div>
+  <div class="sec-rule"></div>
+  <div class="sec-tag">...cooking together, and tasting things before they have names.</div>
+
+  <p class="sec-body">We cook, eat what worked and what didn't, and talk about why. New batches get facilitated tastings before they're anything you could buy — that's not a metaphor, it's literally how the seitan and the fermented chili got their current shape. Nobody's performing for anybody. It's a kitchen, full for an evening, and then it isn't.</p>
+
+  <div class="klist">
+    <div class="klist-item">— <span class="key">Tastings</span> — new batches get opinions before they get a name</div>
+    <div class="klist-item">— <span class="key">Co-design</span> — members shape what actually gets made</div>
+    <div class="klist-item">— <span class="key">No pitch</span> — nobody's selling anybody anything at the table</div>
+  </div>
+
+  <div class="facts">
+    <div class="fc"><span class="fl">Where</span><span class="fv">Baltimore, MD</span></div>
+    <div class="fc"><span class="fl">Who</span><span class="fv">Whoever's cooking that week</span></div>
+    <div class="fc"><span class="fl">Format</span><span class="fv">Informal, recurring</span></div>
+  </div>
+</div>
+
+<!-- INTERSTITIAL -->
+<div class="interstitial">
+   <p class="iq-text">"A kitchen share isn't a focus group. It's just people who show up, cook, and tell you honestly if something's good."</p>
+   <div class="im">
+     <svg width="24" height="58" viewBox="0 0 24 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+       <path d="M12 3 Q16 11 12 19 Q8 27 12 35 Q16 43 12 51 Q10 55 12 58" stroke="#C49A3C" stroke-width="1" fill="none" opacity="0.55"/>
+       <ellipse cx="9" cy="15" rx="4" ry="5" stroke="#4A5E40" stroke-width="0.8" fill="none" transform="rotate(-20 9 15)" opacity="0.5"/>
+       <ellipse cx="15" cy="29" rx="4" ry="5" stroke="#4A5E40" stroke-width="0.8" fill="none" transform="rotate(18 15 29)" opacity="0.5"/>
+       <ellipse cx="10" cy="43" rx="3.5" ry="4.5" stroke="#4A5E40" stroke-width="0.8" fill="none" transform="rotate(-15 10 43)" opacity="0.4"/>
+     </svg>
+   </div>
+</div>
+
+<!-- 03: WHAT IT'S YIELDED -->
+<div class="section">
+  <div class="section-ghost">03</div>
+  <span class="sec-label">Yielded &nbsp;·&nbsp; Growing</span>
+  <div class="sec-name">What We Make</div>
+  <div class="sec-rule"></div>
+  <div class="sec-tag">...seitan, ferments, and sodas — all of it tasted here first.</div>
+
+  <p class="sec-body">Everything on the products page came out of this kitchen, tested by the people in it before it ever got a label or a price. If you've already tried the seitan or the fermented chili at a gathering, that's where it's from.</p>
+</div>
+
+<div class="crosslink">
+  <div class="cl-text">
+    <span class="cl-eyebrow">Currently in circulation</span>
+    <div class="cl-title">Seitan &nbsp;·&nbsp; Fermented Green Chili &nbsp;·&nbsp; Wild Sodas</div>
+  </div>
+  <div class="cl-arrow"><a href="products.html">See what we make →</a></div>
+</div>
+
+<!-- JOIN -->
+<div class="join">
+  <div class="join-head">Get In</div>
+  <p class="join-sub">Two different ways to be part of this, depending on what you're actually after.</p>
+  <div class="join-grid">
+    <div class="join-card">
+      <span class="jc-label">Taste it</span>
+      <div class="jc-title">Join the list</div>
+      <p class="jc-body">Want first word when a new batch of seitan, chili, or soda is ready — and a spot when it goes fast?</p>
+      <a class="jc-btn" href="mailto:yyasanay@substack.com?subject=Join%20the%20taste%20list">Email to join</a>
+    </div>
+    <div class="join-card">
+      <span class="jc-label">Cook with us</span>
+      <div class="jc-title">Join the kitchen</div>
+      <p class="jc-body">Want to actually be at the table — cooking, tasting, and helping shape what gets made next?</p>
+      <a class="jc-btn" href="mailto:yyasanay@substack.com?subject=Interested%20in%20the%20kitchen%20share">Tell us you're interested</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+   <div class="footer-rule"></div>
+   <div class="footer-grid">
+     <div class="fl-left">
+       <div class="fn">Yasith Y. &nbsp;·&nbsp; The Kitchen Share</div>
+       <div class="fd">
+        Baltimore, MD<br>
+        We share what comes out of the kitchen with people in our community — as food, and as an open invitation to cook alongside us. See <a href="products.html">what we make</a>, or reach out directly.<br>
+        <a href="http://instagram.com/yasithy/">Instagram</a> &nbsp;·&nbsp; <a href="mailto:yyasanay@substack.com">Email</a>
+       </div>
+     </div>
+     <div class="fl-right">
+       <div class="fqr">
+         <img src="assets/images/qr-code.png" alt="Subscribe QR">
+         <div class="fql">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Website</div>
+       </div>
+     </div>
+     </div>
+  <p class="fclose">This is a living project. Things change as we learn new things. <a href="https://yyasanay.substack.com/subscribe">Subscribe to the newsletter</a> to stay updated!</p>
+</div>
+
+</div><!-- end .page -->
+
+</body>
+</html>
